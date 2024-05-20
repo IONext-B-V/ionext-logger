@@ -1,0 +1,34 @@
+{
+    "name": "ionext-logger",
+    "version": "1.0.0",
+    "description": "Abstraction for logger designed for IONext projects",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/IONext-B-V/ionext-logger.git"
+    },
+    "author": "Gydo Broos",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/IONext-B-V/ionext-logger/issues"
+    },
+    "homepage": "https://github.com/IONext-B-V/ionext-logger#readme",
+    "dependencies": {
+        "ts-node": "^10.9.2",
+        "winston": "^3.13.0"
+    },
+    "devDependencies": {
+        "@types/winston": "^2.4.4",
+        "tsup": "^8.0.2",
+        "typescript": "^5.4.5"
+    }
+}
