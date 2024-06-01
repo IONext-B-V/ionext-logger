@@ -1,5 +1,5 @@
 {
-    "name": "ionext-logger",
+    "name": "bs-logger",
     "version": "1.0.0",
     "description": "Abstraction for logger designed for IONext projects",
     "main": "./dist/index.js",
