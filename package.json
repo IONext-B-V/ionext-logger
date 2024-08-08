@@ -1,6 +1,6 @@
 {
     "name": "ionextbslogger",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Abstraction for logger designed for IONext projects",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
