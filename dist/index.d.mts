@@ -1,11 +1,11 @@
 declare const _default: {
     setLevel(level: string): void;
     useLocalConfig(): void;
-    info(message: string, ...meta: any[]): void;
-    error(message: string, ...meta: any[]): void;
-    warn(message: string, ...meta: any[]): void;
-    debug(message: string, ...meta: any[]): void;
-    log(message: string, level?: string, ...meta: any[]): void;
+    info(message: string, meta?: {}): void;
+    error(error: string | Error, meta?: {}): void;
+    warn(message: string, meta?: {}): void;
+    debug(message: string, meta?: {}): void;
+    log(message: string, level?: string, meta?: {}): void;
     _getDefaultMeta(): {
         timestamp: string;
         service: string;
