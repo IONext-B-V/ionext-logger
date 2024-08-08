@@ -1,6 +1,6 @@
 // src/index.ts
 import * as winston from "winston";
-var logger = winston.createLogger({
+var winstonLogger = winston.createLogger({
   level: "info",
   format: winston.format.json(),
   transports: [
@@ -13,22 +13,22 @@ var logger = winston.createLogger({
     })
   ]
 });
-var src_default = {
+var logger = {
   setLevel(level) {
-    logger.configure({
+    winstonLogger.configure({
       level
     });
   },
   useLocalConfig() {
     this.setLevel("debug");
-    logger.add(
+    winstonLogger.add(
       new winston.transports.Console({
         format: winston.format.splat()
       })
     );
   },
   info(message, meta = {}) {
-    logger.info(message, {
+    winstonLogger.info(message, {
       meta: {
         ...meta,
         ...this._getDefaultMeta()
@@ -36,7 +36,7 @@ var src_default = {
     });
   },
   error(error, meta = {}) {
-    logger.error(typeof error === "string" ? error : error.message, {
+    winstonLogger.error(typeof error === "string" ? error : error.message, {
       meta: {
         trace: typeof error !== "string" ? error.stack.replaceAll(/\n\s+/g, ";").split(";").splice(1).join("; ") : null,
         ...meta,
@@ -45,7 +45,7 @@ var src_default = {
     });
   },
   warn(message, meta = {}) {
-    logger.warn(message, {
+    winstonLogger.warn(message, {
       meta: {
         ...meta,
         ...this._getDefaultMeta()
@@ -53,7 +53,7 @@ var src_default = {
     });
   },
   debug(message, meta = {}) {
-    logger.debug(message, {
+    winstonLogger.debug(message, {
       meta: {
         ...meta,
         ...this._getDefaultMeta()
@@ -61,7 +61,7 @@ var src_default = {
     });
   },
   log(message, level = "debug", meta = {}) {
-    logger.log(level, message, {
+    winstonLogger.log(level, message, {
       meta: {
         ...meta,
         ...this._getDefaultMeta()
@@ -75,6 +75,11 @@ var src_default = {
     };
   }
 };
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = logger;
+  module.exports.default = logger;
+}
+var src_default = logger;
 export {
   src_default as default
 };

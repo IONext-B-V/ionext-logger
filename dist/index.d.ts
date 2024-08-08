@@ -1,4 +1,4 @@
-declare const _default: {
+declare const logger: {
     setLevel(level: string): void;
     useLocalConfig(): void;
     info(message: string, meta?: {}): void;
@@ -12,4 +12,4 @@ declare const _default: {
     };
 };
 
-export { _default as default };
+export { logger as default };

@@ -1,6 +1,6 @@
 import * as winston from 'winston'
 
-const logger: winston.Logger = winston.createLogger({
+const winstonLogger: winston.Logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
     transports: [
@@ -14,9 +14,9 @@ const logger: winston.Logger = winston.createLogger({
     ],
 })
 
-export default {
+const logger = {
     setLevel(level: string) {
-        logger.configure({
+        winstonLogger.configure({
             level,
         })
     },
@@ -26,7 +26,7 @@ export default {
         // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
         this.setLevel('debug')
         
-        logger.add(
+        winstonLogger.add(
             new winston.transports.Console({
                 format: winston.format.splat(),
             })
@@ -34,7 +34,7 @@ export default {
     },
 
     info(message: string, meta = {}) {
-        logger.info(message, {
+        winstonLogger.info(message, {
             meta: {
                 ...meta,
                 ...this._getDefaultMeta(),
@@ -43,7 +43,7 @@ export default {
     },
 
     error(error: string | Error, meta = {}) {
-        logger.error(typeof error === 'string' ? error : error.message, {
+        winstonLogger.error(typeof error === 'string' ? error : error.message, {
             meta: {
                 trace: typeof error !== 'string' ? error.stack.replaceAll(/\n\s+/g, ';').split(';').splice(1).join('; ') : null,
                 ...meta,
@@ -53,7 +53,7 @@ export default {
     },
 
     warn(message: string, meta = {}) {
-        logger.warn(message, {
+        winstonLogger.warn(message, {
             meta: {
                 ...meta,
                 ...this._getDefaultMeta(),
@@ -62,7 +62,7 @@ export default {
     },
 
     debug(message: string, meta = {}) {
-        logger.debug(message, {
+        winstonLogger.debug(message, {
             meta: {
                 ...meta,
                 ...this._getDefaultMeta(),
@@ -71,7 +71,7 @@ export default {
     },
 
     log(message: string, level: string = 'debug', meta = {}) {
-        logger.log(level, message, {
+        winstonLogger.log(level, message, {
             meta: {
                 ...meta,
                 ...this._getDefaultMeta(),
@@ -86,3 +86,10 @@ export default {
         }
     }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = logger; // CommonJS
+    module.exports.default = logger; // ES Module compatibility
+}
+  
+export default logger; 

@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
         "moduleResolution": "node",
     },
     "exclude": [
